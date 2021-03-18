@@ -9,6 +9,7 @@
     "allowJs": true,
     "esModuleInterop": true,
     "strict": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true
   }
 }

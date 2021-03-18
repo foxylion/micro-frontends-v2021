@@ -1,35 +1,17 @@
 import * as React from "react";
 
-const loadMicroFrontendComponent = (microFrontend: string, module: string) => {
-  return async () => {
-    // @ts-ignore
-    await __webpack_init_sharing__("default");
-    // @ts-ignore
-    const defaultScope = __webpack_share_scopes__.default;
+import { ProductDetailsPage } from "./remotes";
 
-    const container = (window as any)[microFrontend];
-    await container.init();
-    const factory = await container.get(module);
-    const Module = factory();
-    return Module;
-  };
-};
-
-const RemoteComponent: React.FC<{ microFronted: string; module: string }> = (props) => {
-  const Component = React.lazy(loadMicroFrontendComponent(props.microFronted, props.module));
-
+export const App: React.FC = () => {
+  const [load, setLoad] = React.useState(false);
   return (
-    <React.Suspense fallback="Loading System">
-      <Component />
-    </React.Suspense>
+    <div>
+      <h1>Tractor Store</h1>
+      {load ? (
+        <ProductDetailsPage productId="fendt-f20" />
+      ) : (
+        <button onClick={() => setLoad(true)}>Load Product Details</button>
+      )}
+    </div>
   );
 };
-
-const App: React.FC = () => (
-  <div>
-    <h1>Root!</h1>
-    <RemoteComponent microFronted="product" module="Details" />
-  </div>
-);
-
-export default App;

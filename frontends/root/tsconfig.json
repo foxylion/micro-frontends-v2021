@@ -3,9 +3,12 @@
     "outDir": "./dist/",
     "noImplicitAny": true,
     "moduleResolution": "node",
-    "module": "ESNext",
+    "module": "CommonJS",
     "target": "ES2018",
-    "jsx": "react",
-    "allowJs": true
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "sourceMap": true
   }
 }
