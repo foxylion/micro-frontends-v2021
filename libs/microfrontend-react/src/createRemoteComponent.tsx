@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export const createRemoteComponent: <T>(
   microfrontendName: string,
@@ -7,7 +7,7 @@ export const createRemoteComponent: <T>(
 ) => React.FC<T> = (microfrontendName, module, component) => {
   const Component = React.lazy(async () => {
     // @ts-ignore
-    await __webpack_init_sharing__("default");
+    await __webpack_init_sharing__('default');
     // @ts-ignore
     const defaultScope = __webpack_share_scopes__.default;
     const container = (window as any)[`microfrontend_${microfrontendName}`];
@@ -18,8 +18,10 @@ export const createRemoteComponent: <T>(
   });
 
   return (props) => (
-    <React.Suspense fallback="Loading System">
-      <Component {...props} />
+    <React.Suspense fallback="Loading Remote Component">
+      <div className={`remote-component ${microfrontendName}`}>
+        <Component {...props} />
+      </div>
     </React.Suspense>
   );
 };

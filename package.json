@@ -1,8 +1,17 @@
 {
+  "scripts": {
+    "start": "concurrently -n s: \"npm:start-*\"",
+    "start-root": "cd frontends/root && npm start",
+    "start-product": "cd frontends/product && npm start",
+    "start-checkout": "cd frontends/checkout && npm start",
+    "postinstall": "(cd frontends/root && npm install); (cd frontends/product && npm install); (cd frontends/checkout && npm install)"
+  },
   "devDependencies": {
+    "concurrently": "^6.0.0",
     "prettier": "^2.2.1"
   },
   "prettier": {
-    "printWidth": 120
+    "printWidth": 120,
+    "singleQuote": true
   }
 }

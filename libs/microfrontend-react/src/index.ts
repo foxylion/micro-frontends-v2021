@@ -1,3 +1,4 @@
-import { createRemoteComponent } from "./createRemoteComponent";
+import { createRemoteComponent } from './createRemoteComponent';
+import { history, initHistory } from './history';
 
-export { createRemoteComponent };
+export { createRemoteComponent, history, initHistory };

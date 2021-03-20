@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "module": "CommonJS",
+    "target": "ES2018",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "sourceMap": true
+  }
+}

@@ -1,71 +1,65 @@
-import * as path from "path";
-import * as webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import "webpack-dev-server";
+import * as path from 'path';
+import * as webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import 'webpack-dev-server';
+import { createShare } from 'webpack-utils';
 
 const { ModuleFederationPlugin } = webpack.container;
 
-const appDependencies = require("./package.json").dependencies;
-const appName = require("./package.json").name;
+const appDependencies = require('./package.json').dependencies;
+const appName = require('./package.json').name;
 
 const config: webpack.Configuration = {
-  entry: "./src/index",
-  mode: "development",
+  entry: './src/index',
+  mode: 'development',
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     port: 5001,
   },
-  target: "web",
+  target: 'web',
   output: {
-    publicPath: "auto",
-    filename: "main.nocache.js",
-    chunkFilename: "[name].[contenthash].js",
+    publicPath: 'auto',
+    filename: 'main.nocache.js',
+    chunkFilename: '[name].[contenthash].js',
     clean: true,
   },
-  // devtool: "source-map",
-  // optimization: {
-  //   minimize: true,
-  // },
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(tsx?|jsx?)?$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          presets: ["@babel/preset-react", "@babel/preset-typescript"],
+          presets: ['@babel/preset-react', '@babel/preset-typescript'],
         },
       },
       {
         test: /\.js$/,
-        enforce: "pre",
-        use: ["source-map-loader"],
+        enforce: 'pre',
+        use: ['source-map-loader'],
       },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
   },
   plugins: [
     new ModuleFederationPlugin({
       name: `microfrontend_${appName}`,
-      filename: "micro-frontend.nocache.js",
+      filename: 'micro-frontend.nocache.js',
       exposes: {
-        "./Pages": "./src/Pages",
-        "./Fragments": "./src/Fragments",
+        './Pages': './src/Pages',
+        './Fragments': './src/Fragments',
       },
       shared: {
-        react: {
-          requiredVersion: appDependencies.react,
-          import: "react",
-          shareKey: "react",
-          shareScope: "default",
-          singleton: true,
-        },
+        ...createShare('react', appDependencies),
+        ...createShare('@material-ui/core', appDependencies),
+        ...createShare('microfrontend-react', appDependencies),
       },
     }),
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      template: './public/index.html',
     }),
   ],
 };
