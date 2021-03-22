@@ -20,7 +20,6 @@ const config: webpack.Configuration = {
   target: 'web',
   output: {
     publicPath: 'auto',
-    filename: 'main.nocache.js',
     chunkFilename: '[name].[contenthash].js',
     clean: true,
   },

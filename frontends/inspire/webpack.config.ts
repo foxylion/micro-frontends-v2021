@@ -20,7 +20,7 @@ const config: webpack.Configuration = {
   target: 'web',
   output: {
     publicPath: 'auto',
-    filename: 'main.nocache.js',
+    filename: 'main.js',
     chunkFilename: '[name].[contenthash].js',
     clean: true,
   },
@@ -48,7 +48,7 @@ const config: webpack.Configuration = {
   plugins: [
     new ModuleFederationPlugin({
       name: `microfrontend_${appName}`,
-      filename: 'micro-frontend.nocache.js',
+      filename: 'entryPoint.js',
       exposes: {
         pages: './src/pages/index',
         fragments: './src/fragments/index',
