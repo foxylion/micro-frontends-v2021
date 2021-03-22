@@ -14,6 +14,7 @@ const config: webpack.Configuration = {
   mode: 'development',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
+    host: '0.0.0.0',
     port: 5000,
   },
   target: 'web',

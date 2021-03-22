@@ -5,8 +5,8 @@
 
     <script>
       const basePaths =
-        window.location.hostname === 'localhost'
-          ? ['http://localhost:5001', 'http://localhost:5002', 'http://localhost:5003']
+        !window.location.pathname.includes('micro-frontends-v2021')
+          ? [`http://${window.location.hostname}:5001`, `http://${window.location.hostname}:5002`, `http://${window.location.hostname}:5003`]
           : ['./product', './inspire', './checkout'];
 
       basePaths.forEach((basePath) => {

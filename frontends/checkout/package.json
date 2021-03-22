@@ -28,6 +28,7 @@
     "fake-backend": "file:../../libs/fake-backend",
     "microfrontend-react": "file:../../libs/microfrontend-react",
     "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "use-local-storage-state": "^9.0.2"
   }
 }

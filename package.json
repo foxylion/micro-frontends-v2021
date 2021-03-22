@@ -5,7 +5,7 @@
     "start-product": "cd frontends/product && npm start",
     "start-inspire": "cd frontends/inspire && npm start",
     "start-checkout": "cd frontends/checkout && npm start",
-    "postinstall": "(cd libs/fake-backend && npm install && npm build); (cd libs/microfrontend-react && npm install && npm build); (cd libs/webpack-utils && npm install && npm build); (cd frontends/app-shell && npm install); (cd frontends/product && npm install); (cd frontends/inspire && npm install); (cd frontends/checkout && npm install)"
+    "postinstall": "(cd libs/fake-backend && npm install && npm run build); (cd libs/microfrontend-react && npm install && npm run build); (cd libs/webpack-utils && npm install && npm run build); (cd frontends/app-shell && npm install); (cd frontends/product && npm install); (cd frontends/inspire && npm install); (cd frontends/checkout && npm install)"
   },
   "devDependencies": {
     "concurrently": "^6.0.0",
