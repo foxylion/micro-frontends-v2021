@@ -1,1 +1,0 @@
-(self.webpackChunkproduct=self.webpackChunkproduct||[]).push([[265],{265:()=>{}}]);
