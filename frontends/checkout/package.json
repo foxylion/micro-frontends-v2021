@@ -24,8 +24,10 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "fake-backend": "file:../../libs/fake-backend",
     "microfrontend-react": "file:../../libs/microfrontend-react",
-    "react": "^17.0.1"
+    "react": "^17.0.1",
+    "use-local-storage-state": "^9.0.2"
   }
 }

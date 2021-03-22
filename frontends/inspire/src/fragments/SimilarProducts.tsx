@@ -9,7 +9,6 @@ export const SimilarProducts: React.FC = () => {
   const productIds = React.useMemo(() => randomProducts(3).map((item) => item.productId), []);
   return (
     <Grid item>
-      <Typography variant="h5">Similar Products</Typography>
       <Grid container spacing={2}>
         {productIds.map((productId) => (
           <Grid item sm={4} key={productId}>

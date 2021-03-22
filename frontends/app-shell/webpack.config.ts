@@ -46,7 +46,7 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'root',
+      name: appName,
       shared: {
         ...createShare('react', appDependencies),
         ...createShare('@material-ui/core', appDependencies),

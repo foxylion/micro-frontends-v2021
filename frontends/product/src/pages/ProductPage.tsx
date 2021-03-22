@@ -1,13 +1,21 @@
 import * as React from 'react';
 
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, Link, makeStyles, Typography } from '@material-ui/core';
 import { productsById } from 'fake-backend';
 
-import { CheckoutBuyButton, InspireSimilarProducts } from '../remote';
+import { CheckoutBuyButton, SimilarProducts } from '../remote';
+import { history } from 'microfrontend-react';
 
 const useStyles = makeStyles(() => ({
   image: {
     maxWidth: '400px',
+  },
+  breadCrumb: {
+    color: '#aaa',
+    cursor: 'pointer',
+    '&:hover': {
+      textDecoration: 'none',
+    },
   },
 }));
 
@@ -18,7 +26,12 @@ export const ProductPage: React.FC<{ productId: string }> = (props) => {
   return (
     <Grid container direction="column" spacing={3}>
       <Grid item>
-        <Typography variant="h4">{product.name}</Typography>
+        <Typography variant="h4">
+          <Link className={classes.breadCrumb} onClick={() => history().push('/products')}>
+            Products ›
+          </Link>{' '}
+          {product.name}
+        </Typography>
       </Grid>
 
       <Grid item>
@@ -36,7 +49,8 @@ export const ProductPage: React.FC<{ productId: string }> = (props) => {
       </Grid>
 
       <Grid item>
-        <InspireSimilarProducts productId={product.productId} />
+        <Typography variant="h5">Similar Products</Typography>
+        <SimilarProducts productId={product.productId} />
       </Grid>
     </Grid>
   );

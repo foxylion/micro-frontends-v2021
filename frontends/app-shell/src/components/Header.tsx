@@ -1,9 +1,21 @@
-import { AppBar, FormControlLabel, makeStyles, Switch, Tab, Tabs, Toolbar, Typography } from '@material-ui/core';
+import {
+  AppBar,
+  Button,
+  FormControlLabel,
+  makeStyles,
+  Switch,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
 import * as React from 'react';
-import { XRay } from '../App';
+import { XRay } from './App';
 import { Logo } from './Logo';
 
 import { history } from 'microfrontend-react';
+import { useRouteMatch } from 'react-router';
+import { Octocat } from './Octocat';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -31,6 +43,14 @@ const useStyles = makeStyles((theme) => ({
 export const Header: React.FC = () => {
   const classes = useStyles();
   const xRay = React.useContext(XRay);
+
+  const homeRoute = useRouteMatch({ path: '/', exact: true });
+  const productsRoute = useRouteMatch({ path: '/products', exact: true });
+  const productRoute = useRouteMatch({ path: '/product/:product', exact: true });
+  const ordersRoute = useRouteMatch({ path: '/orders', exact: true });
+
+  const selectedTab = homeRoute ? 0 : productsRoute || productRoute ? 1 : ordersRoute ? 2 : false;
+
   return (
     <AppBar position="absolute" color="transparent" elevation={2} className={classes.header}>
       <Toolbar>
@@ -44,10 +64,9 @@ export const Header: React.FC = () => {
           A Famous Store
         </Typography>
 
-        <Tabs indicatorColor="primary" textColor="primary" value={0}>
+        <Tabs indicatorColor="primary" textColor="primary" value={selectedTab}>
           <Tab label="Home" onClick={() => history().push('/')} />
           <Tab label="Products" onClick={() => history().push('/products')} />
-          <Tab label="Basket" onClick={() => history().push('/checkout')} />
           <Tab label="My Orders" onClick={() => history().push('/orders')} />
         </Tabs>
 
@@ -56,8 +75,14 @@ export const Header: React.FC = () => {
         <FormControlLabel
           control={<Switch checked={xRay.enabled} onChange={() => xRay.toggle()} color="primary" />}
           label="XRay"
-          style={{ float: 'right' }}
         />
+        <Button
+          startIcon={<Octocat />}
+          variant="outlined"
+          onClick={() => window.open('https://github.com/foxylion/micro-frontends-v2021')}
+        >
+          GitHub
+        </Button>
       </Toolbar>
     </AppBar>
   );

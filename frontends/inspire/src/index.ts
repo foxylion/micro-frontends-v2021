@@ -1,2 +1,2 @@
 // on script load we currently just do nothing
-console.log('Loaded product micro-frontend.');
+console.log('Loaded inspire micro-frontend.');

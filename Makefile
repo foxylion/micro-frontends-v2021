@@ -9,7 +9,7 @@ build-libs: build-webpack-utils
 build-frontends: build-checkout
 build-frontends: build-inspire
 build-frontends: build-product
-build-frontends: build-root
+build-frontends: build-app-shell
 
 build-fake-backend:
 	cd libs/fake-backend && \
@@ -41,15 +41,15 @@ build-product:
 	npm install && \
 	npm run build
 
-build-root:
-	cd frontends/root && \
+build-app-shell:
+	cd frontends/app-shell && \
 	npm install && \
 	npm run build
 
 dist:
 	rm -rf dist/
 
-	cp -R frontends/root/dist dist/
+	cp -R frontends/app-shell/dist dist/
 	cp -R frontends/checkout/dist dist/checkout
 	cp -R frontends/inspire/dist dist/inspire
 	cp -R frontends/product/dist dist/product

@@ -31,11 +31,14 @@ export const createRemoteComponent: <T>(
   });
 
   return (props) => (
-    <React.Suspense fallback="Loading Remote Component">
-      <div className={`remote-component ${microfrontendName}`}>
-        <Component {...props} />
+    <div className={`remote-component ${microfrontendName}`}>
+      <div className={`remote-component-info`}>
+        {microfrontendName}/{module}/{component}
       </div>
-    </React.Suspense>
+      <React.Suspense fallback="Loading...">
+        <Component {...props} />
+      </React.Suspense>
+    </div>
   );
 };
 

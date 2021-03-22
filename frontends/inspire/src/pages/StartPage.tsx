@@ -4,25 +4,22 @@ import { Grid, Typography } from '@material-ui/core';
 
 import { ProductCard } from '../components/ProductCard';
 import { randomProducts } from '../utils/randomProducts';
+import { HighlightedProducts } from '../fragments/HighlightedProducts';
 
 export const StartPage: React.FC = () => {
-  const productIds = React.useMemo(() => randomProducts(3).map((item) => item.productId), []);
-
   return (
     <Grid container direction="column" spacing={3}>
       <Grid item>
         <Typography variant="h4">Welcome on the The Famous Tractor Store</Typography>
+        <Typography>
+          The tractor store has a long history. Since 1569 we are selling tractors on the web. We call ourselves the
+          most experienced tractor sellers in Europe, America, Asia and Africa.
+        </Typography>
       </Grid>
 
       <Grid item>
         <Typography variant="h5"> Todays Highlights</Typography>
-        <Grid container spacing={2}>
-          {productIds.map((productId) => (
-            <Grid item sm={4} key={productId}>
-              <ProductCard productId={productId} featuredBadge={true} />
-            </Grid>
-          ))}
-        </Grid>
+        <HighlightedProducts />
       </Grid>
     </Grid>
   );

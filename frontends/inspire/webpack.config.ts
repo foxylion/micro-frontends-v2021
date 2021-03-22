@@ -49,8 +49,8 @@ const config: webpack.Configuration = {
       name: `microfrontend_${appName}`,
       filename: 'micro-frontend.nocache.js',
       exposes: {
-        './Pages': './src/Pages',
-        './Fragments': './src/Fragments',
+        pages: './src/pages/index',
+        fragments: './src/fragments/index',
       },
       shared: {
         ...createShare('react', appDependencies),
